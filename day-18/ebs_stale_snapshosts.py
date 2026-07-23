@@ -7,7 +7,7 @@ def lambda_handler(event, context):
     response = ec2.describe_snapshots(OwnerIds=['self'])
 
     # Get all active EC2 instance IDs
-    instances_response = ec2.describe_instances(Filters=[{'Name': 'instance-state-name', 'Values': ['running']}])
+    instances_response = ec2.describe_instances(Filters=[{'Name': 'instance-state-name', 'Values': ['running','stopped']}])
     active_instance_ids = set()
 
     for reservation in instances_response['Reservations']:
